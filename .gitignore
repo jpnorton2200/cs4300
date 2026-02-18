@@ -1,0 +1,11 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+hw1_env/
+.venv/
+venv/
+
+# OS junk
+.DS_Store
