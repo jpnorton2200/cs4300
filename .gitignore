@@ -1,11 +1,15 @@
 # Python cache
 __pycache__/
 *.pyc
+db.sqlite3
 
 # Virtual environments
-hw1_env/
-.venv/
 venv/
+.venv/
+myenv/
+venv/
+
+homework/myenv/venv/
 
 # OS junk
 .DS_Store
