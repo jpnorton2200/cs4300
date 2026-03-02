@@ -6,14 +6,23 @@ class Movie(models.Model):
     title = models.CharField(max_length = 100)
     description = models.CharField(max_length = 1000)
     release_date = models.DateField()
-    duration = models.DecimalField(max_digits = 4, decimal_places = 1)
+    duration = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.title
 
 class Seat(models.Model):
-    seat_number = models.IntegerField()
+    seat_number = models.PositiveSmallIntegerField()
     booking_status = models.BooleanField(default=False)
 
+    def __str__(self):
+        return str(self.seat_number)
+
 class Booking(models.Model):
-    movie = models.CharField(max_length = 100)    
-    seat = models.IntegerField()
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    seat = models.OneToOneField(Seat, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    booking_date = models.DateField()
+    booking_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.movie + " - " + self.user + " - " + self.seat
