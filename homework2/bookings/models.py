@@ -14,19 +14,20 @@ class Movie(models.Model):
 
 class Seat(models.Model):
     seat_number = models.PositiveSmallIntegerField()
-    booking_status = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.seat_number)
+        return f"Seat {self.seat_number}"
 
 class Booking(models.Model):
-    #many bookings can happen for one movie
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    #only one booking can happen for this seat
-    seat = models.OneToOneField(Seat, on_delete=models.CASCADE)
-    #one user can make many bookings
+    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     booking_date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['movie', 'seat'], name='unique_movie_seat_booking')
+        ]
+
     def __str__(self):
-        return self.movie + " - " + self.user + " - " + self.seat
+        return f"{self.movie.title} - {self.user.username} - Seat {self.seat.seat_number}"

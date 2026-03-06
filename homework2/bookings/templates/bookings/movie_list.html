@@ -10,7 +10,7 @@
     <li class="list-group-item">
       <h5>{{ movie.title }}</h5>
       <p class="mb-2">{{ movie.description }}</p>
-      <a href="#" class="btn btn-primary btn-sm">Book Now</a>
+      <a href="{% url 'book_a_seat' movie.id %}" class="btn btn-primary btn-sm">Book Now</a>
     </li>
   {% empty %}
     <li class="list-group-item">No movies available.</li>
