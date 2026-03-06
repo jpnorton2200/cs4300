@@ -1,19 +1,45 @@
 {% extends "bookings/base.html" %}
 
+<!-- Page title shown in the browser tab -->
 {% block title %}Available Movies{% endblock %}
 
 {% block content %}
+
+<!-- Page heading -->
 <h2 class="mb-4">Available Movies</h2>
 
+
+<!-- List of movies -->
 <ul class="list-group">
+
+  <!-- Loop through all movies passed from the view -->
   {% for movie in movies %}
+
+    <!-- Individual movie card -->
     <li class="list-group-item">
+
+      <!-- Movie title -->
       <h5>{{ movie.title }}</h5>
+
+      <!-- Movie description -->
       <p class="mb-2">{{ movie.description }}</p>
-      <a href="{% url 'book_a_seat' movie.id %}" class="btn btn-primary btn-sm">Book Now</a>
+
+      <!-- Link to seat booking page for this movie -->
+      <a href="{% url 'book_a_seat' movie.id %}" class="btn btn-primary btn-sm">
+        Book Now
+      </a>
+
     </li>
+
   {% empty %}
-    <li class="list-group-item">No movies available.</li>
+
+    <!-- Message displayed if no movies exist -->
+    <li class="list-group-item">
+      No movies available.
+    </li>
+
   {% endfor %}
+
 </ul>
+
 {% endblock %}

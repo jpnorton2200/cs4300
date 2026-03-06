@@ -1,13 +1,24 @@
 {% extends "bookings/base.html" %}
 
+<!-- Page title shown in browser tab -->
 {% block title %}My Bookings{% endblock %}
 
 {% block content %}
+
+<!-- Page heading -->
 <h2 class="mb-4">My Bookings</h2>
 
+
+<!-- If the user has bookings, display them in a table -->
 {% if bookings %}
+
+  <!-- Responsive wrapper allows horizontal scroll on small screens -->
   <div class="table-responsive">
+
+    <!-- Bootstrap styled table -->
     <table class="table table-striped table-bordered align-middle">
+
+      <!-- Table header -->
       <thead>
         <tr>
           <th>Movie</th>
@@ -15,20 +26,37 @@
           <th>Booked At</th>
         </tr>
       </thead>
+
+      <!-- Table body populated dynamically -->
       <tbody>
         {% for b in bookings %}
           <tr>
+            <!-- Movie title -->
             <td>{{ b.movie.title }}</td>
+
+            <!-- Seat number -->
             <td>Seat {{ b.seat.seat_number }}</td>
+
+            <!-- Booking timestamp -->
             <td>{{ b.booking_date }}</td>
           </tr>
         {% endfor %}
       </tbody>
+
     </table>
   </div>
+
 {% else %}
+
+  <!-- Message shown if user has no bookings -->
   <p>You don’t have any bookings yet.</p>
+
 {% endif %}
 
-<a class="btn btn-secondary mt-3" href="{% url 'movie_list' %}">Back to Movies</a>
+
+<!-- Navigation button to return to movie list -->
+<a class="btn btn-secondary mt-3" href="{% url 'movie_list' %}">
+  Back to Movies
+</a>
+
 {% endblock %}

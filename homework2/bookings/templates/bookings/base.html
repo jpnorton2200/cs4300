@@ -1,25 +1,59 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{% block title %}Movie Theater{% endblock %}</title>
+    <!-- Character encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive scaling for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page title block (overridden in child templates) -->
+    <title>{% block title %}Movie Theater{% endblock %}</title>
+
+    <!-- Bootstrap CSS for styling and responsive layout -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"
+    >
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">Movie Theater</a>
-        <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'movie_list' %}">Movies</a>
-          <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <!-- Application title / brand -->
+            <a class="navbar-brand" href="#">Movie Theater</a>
+
+            <!-- Navigation links -->
+            <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'movie_list' %}">Movies</a>
+                <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
+            </div>
+
         </div>
+    </nav>
+
+
+    <!-- Main page content container -->
+    <div class="container mt-4">
+
+        <!-- Content block to be filled by child templates -->
+        {% block content %}
+        {% endblock %}
+
     </div>
-  </nav>
-  <div class="container mt-4">
-    {% block content %}
-    {% endblock %}
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Bootstrap JavaScript bundle (required for navbar and components) -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
 </body>
+
 </html>

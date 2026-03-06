@@ -1,35 +1,78 @@
 {% extends "bookings/base.html" %}
 
+<!-- Page title shown in browser tab -->
 {% block title %}Book Seat{% endblock %}
 
 {% block content %}
-<h2 class="mb-3">Book a Seat</h2>
-<p class="text-muted">Movie: <strong>{{ movie.title }}</strong></p>
 
+<!-- Page heading -->
+<h2 class="mb-3">Book a Seat</h2>
+
+<!-- Display the selected movie -->
+<p class="text-muted">
+  Movie: <strong>{{ movie.title }}</strong>
+</p>
+
+
+<!-- Seat grid layout -->
 <div class="row">
+
+  <!-- Loop through all seats passed from the view -->
   {% for seat in seats %}
+
+    <!-- Responsive seat card -->
     <div class="col-6 col-md-3 mb-2">
+
       <div class="card">
         <div class="card-body p-2 d-flex justify-content-between align-items-center">
+
+          <!-- Seat number display -->
           <span>Seat {{ seat.seat_number }}</span>
-          
-            {% if seat.id in booked_seat_ids %}
-                <span class="badge bg-danger">Booked</span>
-            {% else %}
-                <form method="post" style="margin:0;">
-                    {% csrf_token %}
-                    <input type="hidden" name="seat_id" value="{{ seat.id }}">
-                    <button type="submit" class="btn btn-success btn-sm">Book</button>
-                </form>
-            {% endif %}
-          
+
+          <!-- Check if the seat is already booked for this movie -->
+          {% if seat.id in booked_seat_ids %}
+
+            <!-- Display booked status -->
+            <span class="badge bg-danger">Booked</span>
+
+          {% else %}
+
+            <!-- Booking form -->
+            <form method="post" style="margin:0;">
+
+              <!-- CSRF protection required by Django -->
+              {% csrf_token %}
+
+              <!-- Hidden input storing seat id -->
+              <input type="hidden" name="seat_id" value="{{ seat.id }}">
+
+              <!-- Submit button to book the seat -->
+              <button type="submit" class="btn btn-success btn-sm">
+                Book
+              </button>
+
+            </form>
+
+          {% endif %}
+
         </div>
       </div>
+
     </div>
+
   {% empty %}
+
+    <!-- Message shown if no seats exist -->
     <p>No seats found.</p>
+
   {% endfor %}
+
 </div>
 
-<a href="{% url 'movie_list' %}" class="btn btn-secondary mt-3">Back to Movies</a>
+
+<!-- Navigation button back to movie list -->
+<a href="{% url 'movie_list' %}" class="btn btn-secondary mt-3">
+  Back to Movies
+</a>
+
 {% endblock %}

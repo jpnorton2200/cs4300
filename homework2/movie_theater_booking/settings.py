@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0j!0z^bu6r=nqhrh$rva17zy%+%(x_&qd5^qnp@%q%kmp+t-$)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["app-jpnorton-21.devedu.io", "editor-jpnorton-21.devedu.io", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["app-jpnorton-21.devedu.io", "editor-jpnorton-21.devedu.io", "localhost", "127.0.0.1", "testserver"]
 
 
 # Application definition
